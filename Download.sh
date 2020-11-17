@@ -30,3 +30,6 @@ awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.f
 mv $A.fastq.modif $A.fastq
 
 done
+
+#Run the script with nohup ./Download.sh >& nohup.fastq_dump &  
+#It creates a file with the commentary about the process (error messages ...)
