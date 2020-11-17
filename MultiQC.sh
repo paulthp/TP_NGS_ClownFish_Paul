@@ -12,5 +12,5 @@ mkdir -p sra_data_multiqc
 
 multiqc $data/sra_data_quality/*.zip -o sra_data_multiqc
 
-#lancer script avec      nohup ./MultiQC.sh >& nohup.multiqc &
+#launch script with      nohup ./MultiQC.sh >& nohup.multiqc &
 
