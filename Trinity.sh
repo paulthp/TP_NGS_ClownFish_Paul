@@ -11,10 +11,12 @@ cd $data
 #Launch the Trinity process. 
 #| = on prend le resultat et on l'envoie dans la suite
 #avec paste on colle les noms en les séparant avec une virgule (besoin pour trinity)
-FASTQ=$(ls $data/sar_data/*.fastq |paste -s -d, -)
 
+mkdir -p sra_data_Trinity
 
-Trinity --seqType fq --max_memory 50G --single FASTQ --SS_lib_type R --output sra_data_Trinity --CPU 14 --normalize_by_read_set
+FASTQ=$(ls $data/sra_data/*.fastq |paste -s -d, -)
+
+Trinity --seqType fq --max_memory 50G --single $FASTQ --SS_lib_type R --output sra_data_Trinity --CPU 14 --normalize_by_read_set
 
 
 # Remove length and path in sequence names to avoid bug with blast ( sequence name length > 1000)
@@ -22,4 +24,4 @@ Trinity --seqType fq --max_memory 50G --single FASTQ --SS_lib_type R --output sr
 
 
 
-#launch script with      nohup ./MultiQC.sh >& nohup.Trinity &
+#launch script with      nohup ./Trinity.sh >& nohup.Trinity &
