@@ -8,9 +8,23 @@ _Italic_
 
 Readme du projet NGS
 
+## Objective
+
+
+## Dataset, paper of interest
+
+The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. 
+
+## Process with Rscript
+
+There are several steps to complete this study. The reads are download from the NCBI. They are 50 nucleotides length. First we determine there quality to know the validity of the study performed. Then the qua
+
+# Download the data
 
 _Download.sh_
-Download the reads for the study
+Download the reads for the study. 
+
+# Determine the quality of the reads
 
 _FastQC.sh_
 Create an HTML file for each file of reads with the quality of sequences
@@ -18,17 +32,20 @@ Create an HTML file for each file of reads with the quality of sequences
 _MultiQC.sh_
 Create one HTML file with the summary of the quality of all the files
 
+# Quantify the expression of the transcripts 
+
 _Trinity.sh_
 Assemble the reads of sequencing
 
 _Salmon.sh_
-quantify the expression of the transcripts
+quantify the expression of the transcripts. This script uses the reads and the 
 
 _transcod.sh_
 prepare the genes of the studied species to be able to annotate them with a reference species 
 
 
-###Commands
+### Commands
+
 _cd_ go in a specific folder
 _mkdir folder_ create a folder (mkdir -p folder to avoid to create again a folder which already exists) 
 _cat_ open a file (ONLY little files)
