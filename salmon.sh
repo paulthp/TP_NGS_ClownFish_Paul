@@ -1,7 +1,7 @@
-#!/bin/bash   BESOIN ??
+#!/bin/bash
 
 #Make a salmon to quantify the expression of the transcripts
-  
+
 
 # Create a working directory:
 data="/home/rstudio/data/mydatalocal/data"
@@ -17,8 +17,8 @@ salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/data_salmon/
 # Pour éviter que a chaque boucle on remplace les données d'avant
 #-p numbre of threads = nombre de coeurs
 
-fastq=$(data/sra_data/*.fastq)
-
+fastq=$(ls $data/sra_data/*.fastq)
+echo $fastq
 for A in $fastq
 do
 
