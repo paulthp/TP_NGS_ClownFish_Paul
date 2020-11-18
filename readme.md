@@ -3,10 +3,10 @@
 Readme du projet NGS
 
 
-Download.sh 
-Download the reads for the study
+### *Download.sh* 
+## *Download the reads for the study
 
-FastQC.sh 
+_FastQC.sh_ 
 Create an HTML file for each file of reads with the quality of sequences
 
 MultiQC.sh
