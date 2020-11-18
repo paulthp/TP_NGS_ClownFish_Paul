@@ -2,27 +2,30 @@
 
 ## Titre
 ### Sous titre
-*Italique*
-_Italique_
-**test**
+*Italic*
+_Italic_
+**bold**
 
 Readme du projet NGS
 
 
 _Download.sh_
-&nbsp;Download the reads for the study
+Download the reads for the study
 
 _FastQC.sh_
-&nbsp;Create an HTML file for each file of reads with the quality of sequences
+Create an HTML file for each file of reads with the quality of sequences
 
 _MultiQC.sh_
-&nbsp;Create one HTML file with the summary of the quality of all the files
+Create one HTML file with the summary of the quality of all the files
 
 _Trinity.sh_
-&nbsp;Assemble the reads of sequencing
+Assemble the reads of sequencing
 
 _Salmon.sh_
 quantify the expression of the transcripts
+
+_transcod.sh_
+prepare the genes of the studied species to be able to annotate them with a reference species 
 
 
 ###Commands
