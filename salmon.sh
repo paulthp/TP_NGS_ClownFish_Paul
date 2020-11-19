@@ -10,7 +10,7 @@ cd $data
 mkdir -p data_salmon
 
 # Index the transcriptome
-salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/data_salmon/trinity_index
+salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/sra_data_Trinity/trinity_index
 
 # Quantification
 # Dans Name on met le nom des variables sans .fastq pour pouvoir créer un dossier à chaque boucle du nom du fichier sans fastq (pas beau)
