@@ -18,7 +18,7 @@ salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/data_salmon/
 #-p numbre of threads = nombre de coeurs (pour l'ordinateur)
 
 fastq=$(ls $data/sra_data/*.fastq)
-echo $fastq
+
 for A in $fastq
 do
 
