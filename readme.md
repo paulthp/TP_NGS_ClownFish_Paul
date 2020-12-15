@@ -60,7 +60,7 @@ _nohup ./script.sh >& nohup.script &_ run a script and put the informations in a
 _htop_ have a look at the current processes (precise)
 _ps_ have a look at the current processes (not precise)
 
-
+_grep "Mapping rate" nohup.salmon_ find the sentences with "Mapping rate" in the file nohup.salmon
 
 
 
