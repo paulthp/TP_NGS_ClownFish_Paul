@@ -28,4 +28,6 @@ salmon quant -l SR --validateMappings --gcBias -p 16 -i $data/sra_data_Trinity/t
 
 done
 
+#open quant.sf with less to see the results of salmon
+#grep "Mapping rate" nohup.salmon     to find the % of mapping in a doc.
 #launch script with      nohup ./salmon.sh >& nohup.salmon &
