@@ -63,7 +63,7 @@ Here is an exemple of a fastqc result obtained with our data. The quality was go
 
 
 **_MultiQC.sh_**  
-Create one HTML file with the summary of the quality of all the files
+Create one HTML file with the summary of the quality of all the files. The same results than fastqc are obtained but with all the different files represented on the different graphs. It is usefull to detect an eventual issue when many files are used. 
 
 # Quantify the expression of the transcripts 
 
@@ -84,7 +84,35 @@ Exemple of a transcript obtained with Trinity
 **_Salmon.sh_**  
 ![legende](images/salmon2.jpg)
 
-quantify the expression of the transcripts. This script uses the reads and the 
+quantify the expression of the transcripts. This script takes the transcripts from Trinity and makes first an index. Then it uses this index to quantify for each transcript the number of associated reads. 
+One important parameter to choose in the "salmon index" is the k, to indicate the sensibility of alignement between the reads and the transcripts.
+
+Mapping percentage ?
+
+
+```
+salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/sra_data_Trinity/trinity_index
+salmon quant -l SR --validateMappings --gcBias -p 16 -i $data/sra_data_Trinity/trinity_index -o data_salmon/$Name -r $A
+```
+
+Importance of k !
+Nohup informations ?
+
+----------------
+
+Exemple of results obtained with salmon. The first column indicates the name of a transcript assemble by Trinity, and the last column the number of reads associated with it.
+
+             Name          Length   EffectiveLength      TPM         NumReads
+    TRINITY_DN92_c0_g1_i3   1670      1338.838        0.000000        0.000
+    TRINITY_DN32_c0_g1_i4   1927      1787.007        0.000000        0.000
+    TRINITY_DN32_c0_g1_i5   2277      2112.714        8.443555        2501.624
+    TRINITY_DN32_c0_g1_i6   1927      1788.113        14.277959       3580.280
+    TRINITY_DN32_c0_g1_i7   2277      2111.608        0.000000        0.000
+    TRINITY_DN32_c0_g1_i1   1255      1080.733        4.774877        723.663
+    TRINITY_DN32_c0_g1_i2   1802      1672.297        0.000000        0.000
+    TRINITY_DN32_c0_g1_i3   1802      1682.080        3.596785        848.432
+
+----------------
 
 **_reference.sh_**  
 Download the genes of the reference species (stegastes partitus)
