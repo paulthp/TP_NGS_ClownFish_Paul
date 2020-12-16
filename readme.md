@@ -34,8 +34,7 @@ Download the reads for the study.
 For each file, a *fastq-dump* has been performed to download the data as fastq files
 Using awk, sequence names has been renamed (trinity need that their name ends with "/1" for R1 and "/2" for R2)
 
-awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.fastq > $A.fastq.modif
-mv $A.fastq.modif $A.fastq
+```awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.fastq > $A.fastq.modif mv $A.fastq.modif $A.fastq```
 
 ----------------
 Exemple of fastq file: (line 4 corresponds to the quality sequence)  
