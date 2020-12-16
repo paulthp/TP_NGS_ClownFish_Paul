@@ -10,6 +10,11 @@
 _Italic_
 **bold**
 
+test  
+test
+test
+
+test
 
 ## Objective
 
@@ -56,6 +61,12 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 
 _FastQC.sh_
 Create an HTML file for each file of reads with the quality of sequences
+
+![screenshot](fastqc_summary.jpg)
+
+![screenshot](fastqc_sequence_quality.jpg)
+
+![screenshot](fastqc_sequence_quality2.jpg)
 
 _MultiQC.sh_
 Create one HTML file with the summary of the quality of all the files
