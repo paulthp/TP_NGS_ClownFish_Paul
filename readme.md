@@ -121,6 +121,8 @@ Download the genes of the reference species (stegastes partitus)
 
 ```wget -O data_reference/spartitus_coding.fa.gz http://ftp.ensembl.org/pub/release-102/fasta/stegastes_partitus/cds/Stegastes_partitus.Stegastes_partitus-1.0.2.cds.all.fa.gz```
 
+Then the name was change to make it more clear with a complicated script, parse.awk
+
 ----------------
 
 Exemple of data obtained with reference.sh
@@ -130,11 +132,6 @@ Exemple of data obtained with reference.sh
     AAGAGGAACTGGATCCCTGCCAGTAAACATGCCGTCACCGTGTCCTTCTTCTACGATGCC
     AATCGCAACGTGTATCGCATCATCAGCGTGGGCGGGACCAAGGCGATCATCAACTGCACC
 
----------------
-
-Then the name was change to make it more clear with a complicated script, parse.awk
-
-----------------
 
 Same exemple of data renamed with with reference.sh
 
