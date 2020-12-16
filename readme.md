@@ -58,9 +58,10 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 **_FastQC.sh_**  
 Create an HTML file for each file of reads with the quality of sequences
 
-![legende](images/fastqc_summary.jpg)
+Here is an exemple of a fastqc result obtained with our data. The quality was good enough, considering that a high duplication level is normal in RNAseq, and the Per "Base Sequence Content" is caused by a common problem of the primers synthesis.
 
-![legende](images/fastqc_sequence_quality2.jpg)
+![legende](images/fastqc_exemple.jpg)
+
 
 **_MultiQC.sh_**  
 Create one HTML file with the summary of the quality of all the files
