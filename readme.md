@@ -6,21 +6,11 @@
 
 ## Titre
 ### Sous titre
-*Italic*
-_Italic_
-**bold**
+*Italic*  
+_Italic_  
+**bold**  
+**_italic bold_**
 
-
-test
-
->test
-tees
-eqf
-
->test
->test
-
-test
 
 ## Objective
 
@@ -38,7 +28,7 @@ There are several steps to complete this study. The reads are download from the 
 
 # Download the data
 
-_Download.sh_
+**_Download.sh_**  
 Download the reads for the study. 
 
 For each file, a *fastq-dump* has been performed to download the data as fastq files
@@ -65,19 +55,19 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 
 # Determine the quality of the reads
 
-_FastQC.sh_
+**_FastQC.sh_**  
 Create an HTML file for each file of reads with the quality of sequences
 
 ![legende](images/fastqc_summary.jpg)
 
 ![legende](images/fastqc_sequence_quality2.jpg)
 
-_MultiQC.sh_
+**_MultiQC.sh_**  
 Create one HTML file with the summary of the quality of all the files
 
 # Quantify the expression of the transcripts 
 
-_Trinity.sh_  
+**_Trinity.sh_**  
 ![legende](images/trinity.jpg)
 
 Assemble the reads of sequencing
@@ -91,17 +81,17 @@ Exemple of a transcript obtained with Trinity
 
 ----------------
 
-_Salmon.sh_  
+**_Salmon.sh_**  
 ![legende](images/salmon.jpg)
 
 quantify the expression of the transcripts. This script uses the reads and the 
 
-_reference.sh_
+**_reference.sh_**  
 Download the genes of the reference species (stegastes partitus)
 
 ![legende](images/bicolor_damselfish2.jpg)
 
-_transcod.sh_
+**_transcod.sh_**  
 prepare the genes of the studied species to be able to annotate them with a reference species 
 
 
