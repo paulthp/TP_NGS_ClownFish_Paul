@@ -68,7 +68,7 @@ Create one HTML file with the summary of the quality of all the files
 # Quantify the expression of the transcripts 
 
 **_Trinity.sh_**  
-![legende](images/trinity.jpg)
+![legende](images/trinity2.jpg)
 
 Assemble the reads of sequencing
 
@@ -82,7 +82,7 @@ Exemple of a transcript obtained with Trinity
 ----------------
 
 **_Salmon.sh_**  
-![legende](images/salmon.jpg)
+![legende](images/salmon2.jpg)
 
 quantify the expression of the transcripts. This script uses the reads and the 
 
