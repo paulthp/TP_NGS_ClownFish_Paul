@@ -11,6 +11,17 @@ _Italic_
 **bold**
 
 
+test
+
+>test
+tees
+eqf
+
+>test
+>test
+
+test
+
 ## Objective
 
 Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diveristy, the clownfish, whci harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation.  
@@ -66,16 +77,29 @@ Create one HTML file with the summary of the quality of all the files
 
 # Quantify the expression of the transcripts 
 
-_Trinity.sh_
+_Trinity.sh_  
+![legende](images/trinity.jpg)
+
 Assemble the reads of sequencing
 
-_Salmon.sh_
+----------------
+
+Exemple of a transcript obtained with Trinity
+
+    TRINITY_DN18_c0_g1_i1 len=919 path=[0:0-918]
+    GTGAGGCTGAGTGGAGTCTGCAGGGCGCACCGATGCCCGACAGCCTGGACTGGAAGGCCGTGTATGAAGCCAGGCCGCTGGGAAGAAACTTACTGAAGAACCCCGCACCTCACGGGTTGAGTAAAGATGTTCCTCCACCTGAACCCGAGCTGGCTCAAGTGCTCACACGTGGACCTCCACGTTTTCAGCCTGATGGTGACTTCACCGGCTGGACCACGAGCATAGAAGTCCTGCCCTATGATGACAGTGGCATCCCAGAAGGTGCTGTGGTCTGTGCTTTGCCTACATATAGCTGGTTCACTATGGAGCAGGTTGTGGACCTGAAGGCAGAGGGACTGTGGGACGAGCTGCTGGATGCTTTTCAGCCTGAAATAGTCATCCAAGACTGGTATGAGGAGAGTCAGCTGCATAAATCCATCTACCAGCTGCATGTGAAGTTACTGGGTGCGGACAAAAGCACGGTGATCTCAGAGCACTCTGTCAGCCCCACTGAGGAGCTCAGCGTTTACTCACACAACTGGAAGGAGGTGTCGCATGTGTTCTCCGGCTATGGACCCGGGGTCAGATATGTCCACTTCGTTCACCGACTGAAGAACAGTTTCCTGAATGGGTTCTTTCCCACGCTGTTCACCGGCAGCTCAGTGATTGTGAAACCAATCAAAACCAGCCCATAGGACAAATCCTGCCATGCACGTGTAGCTGCTCATATACCCAACCAGTTTTATCAGCCAGTTTGGTCTTTAGGCTGGCAACTGAAAAGAACGTAACAGTCTTTTTATTGACTAGTTTTGATTTGTTTGTCGGAGTTGATTTTTGCAATAGCTTTTGAGATATTTTTCAAATAAGGTCAAACTTCGTTGTCTTCTGAGGGTTGCTGTGTGGTGCAATAATAAAAAATACAGTTCACATAAAAAAAAAA
+
+----------------
+
+_Salmon.sh_  
+![legende](images/salmon.jpg)
+
 quantify the expression of the transcripts. This script uses the reads and the 
 
 _reference.sh_
 Download the genes of the reference species (stegastes partitus)
 
-![legende](bicolor_damselfish2.jpg)
+![legende](images/bicolor_damselfish2.jpg)
 
 _transcod.sh_
 prepare the genes of the studied species to be able to annotate them with a reference species 
