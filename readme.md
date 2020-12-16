@@ -10,15 +10,10 @@
 _Italic_
 **bold**
 
-test  
-test
-test
-
-test
 
 ## Objective
 
-Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diveristy, the clownfish, whci harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation. 
+Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diveristy, the clownfish, whci harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation.  
 We wonder then if the white bars are composed of iridophores, leucophores or both. To this purpose, transcriptomic analyses of white and orange scales where performed on 3 organisms and data were collected to compare transcriptomes. 
 
 
@@ -64,8 +59,6 @@ Create an HTML file for each file of reads with the quality of sequences
 
 ![legende](images/fastqc_summary.jpg)
 
-![legende](images/fastqc_sequence_quality.jpg)
-
 ![legende](images/fastqc_sequence_quality2.jpg)
 
 _MultiQC.sh_
@@ -81,7 +74,7 @@ quantify the expression of the transcripts. This script uses the reads and the
 
 _reference.sh_
 Download the genes of the reference species (stegastes partitus)
-![illumina image](https://reefguide.org/pix/bicolordamsel5.jpg)
+![legende](bicolor_damselfish2.jpg)
 
 _transcod.sh_
 prepare the genes of the studied species to be able to annotate them with a reference species 
