@@ -42,7 +42,7 @@ quantify the expression of the transcripts. This script uses the reads and the
 
 _reference.sh_
 Download the genes of the reference species (stegastes partitus)
-https://reefguide.org/pix/bicolordamsel5.jpg
+![illumina image](https://reefguide.org/pix/bicolordamsel5.jpg)
 
 _transcod.sh_
 prepare the genes of the studied species to be able to annotate them with a reference species 
