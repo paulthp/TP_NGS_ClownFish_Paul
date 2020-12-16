@@ -8,14 +8,33 @@
 _Italic_
 **bold**
 
-Readme du projet NGS
 
 ## Objective
+
+Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diveristy, the clownfish, whci harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation. 
+We wonder then if the white bars are composed of iridophores, leucophores or both. To this purpose, transcriptomic analyses of white and orange scales where performed on 3 organisms and data were collected to compare transcriptomes. 
 
 
 ## Dataset, paper of interest
 
-The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. 
+The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. Reads are found in 6 files, from SRR7591064 to SRR7591069. 
+For each file, a *fastq-dump* has been performed to download the data as fastq files
+Using awk, sequence names has been renamed (trinity need that their name ends with "/1" for R1 and "/2" for R2)
+
+awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.fastq > $A.fastq.modif
+mv $A.fastq.modif $A.fastq
+
+----------------
+Exemple of fastq file: (line 4 corresponds to the quality sequence)  
+_@SRR7591064_1/1_
+_NGCACACAGAGCTCCAACCAAAATGATAATGCCACCTGCCATGGCAATGC_
+_+SRR7591064_1/1_
+_#AAFFJJJJJJJJAJJAFJFJFFFFAJJJFJJJJJJ-AJ<JJJJFJJJJ<_
+_@SRR7591064_2/1_
+_NTTCACAAGTTATTGTTAAATTAAGACACGCTTTATAACATCTGACCACC_
+_+SRR7591064_2/1_
+_#AAAFJJJJJJJJJJJ-FJJ-FJFJJFJ7-A<FJJJJJJJJ-<A-F-FFJ_
+----------------
 
 ## Process with Rscript
 
