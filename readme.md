@@ -119,6 +119,33 @@ Download the genes of the reference species (stegastes partitus)
 
 ![legende](images/bicolor_damselfish2.jpg)
 
+```wget -O data_reference/spartitus_coding.fa.gz http://ftp.ensembl.org/pub/release-102/fasta/stegastes_partitus/cds/Stegastes_partitus.Stegastes_partitus-1.0.2.cds.all.fa.gz```
+
+----------------
+
+Exemple of data obtained with reference.sh
+
+    ENSSPAT00000000002.1 cds primary_assembly:Stegastes_partitus-1.0.2:KK580071.1:9353:21963:-1 gene:ENSSPAG00000000002.1 gene_biotype:protein_coding transcript_biotype:protein_coding gene_symbol:homer3a description:homer protein homolog 3-like [Source:NCBI gene;Acc:103352799]
+    ATGGGATGTCAGCCGATCTTCAGCGCCCGGGCCCACGTCTTCCAGATCGACCCCAACACC
+    AAGAGGAACTGGATCCCTGCCAGTAAACATGCCGTCACCGTGTCCTTCTTCTACGATGCC
+    AATCGCAACGTGTATCGCATCATCAGCGTGGGCGGGACCAAGGCGATCATCAACTGCACC
+
+---------------
+
+Then the name was change to make it more clear with a complicated script, parse.awk
+
+----------------
+
+Same exemple of data renamed with with reference.sh
+
+    ENSSPAG00000000002.1|homer3a
+    ATGGGATGTCAGCCGATCTTCAGCGCCCGGGCCCACGTCTTCCAGATCGACCCCAACACC
+    AAGAGGAACTGGATCCCTGCCAGTAAACATGCCGTCACCGTGTCCTTCTTCTACGATGCC
+    AATCGCAACGTGTATCGCATCATCAGCGTGGGCGGGACCAAGGCGATCATCAACTGCACC
+
+---------------
+
+
 **_transcod.sh_**  
 prepare the genes of the studied species to be able to annotate them with a reference species 
 
