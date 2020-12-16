@@ -1,5 +1,7 @@
 # TP NGS ClownFish
 
+------------------------------------------------
+
 ![screenshot](poisson_clown.jpg)
 
 ## Titre
@@ -18,6 +20,16 @@ We wonder then if the white bars are composed of iridophores, leucophores or bot
 ## Dataset, paper of interest
 
 The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. Reads are found in 6 files, from SRR7591064 to SRR7591069. 
+
+## Workflow
+
+There are several steps to complete this study. The reads are download from the NCBI. They are 50 nucleotides length. First we determine there quality to know the validity of the study performed. Then the qua
+
+# Download the data
+
+_Download.sh_
+Download the reads for the study. 
+
 For each file, a *fastq-dump* has been performed to download the data as fastq files
 Using awk, sequence names has been renamed (trinity need that their name ends with "/1" for R1 and "/2" for R2)
 
@@ -26,24 +38,19 @@ mv $A.fastq.modif $A.fastq
 
 ----------------
 Exemple of fastq file: (line 4 corresponds to the quality sequence)  
-_@SRR7591064_1/1_
-_NGCACACAGAGCTCCAACCAAAATGATAATGCCACCTGCCATGGCAATGC_
-_+SRR7591064_1/1_
-_#AAFFJJJJJJJJAJJAFJFJFFFFAJJJFJJJJJJ-AJ<JJJJFJJJJ<_
-_@SRR7591064_2/1_
-_NTTCACAAGTTATTGTTAAATTAAGACACGCTTTATAACATCTGACCACC_
-_+SRR7591064_2/1_
-_#AAAFJJJJJJJJJJJ-FJJ-FJFJJFJ7-A<FJJJJJJJJ-<A-F-FFJ_
+
+    @SRR7591064_1/1
+    NGCACACAGAGCTCCAACCAAAATGATAATGCCACCTGCCATGGCAATGC
+    +SRR7591064_1/1
+    #AAFFJJJJJJJJAJJAFJFJFFFFAJJJFJJJJJJ-AJ<JJJJFJJJJ<
+    @SRR7591064_2/1
+    NTTCACAAGTTATTGTTAAATTAAGACACGCTTTATAACATCTGACCACC
+    +SRR7591064_2/1
+    #AAAFJJJJJJJJJJJ-FJJ-FJFJJFJ7-A<FJJJJJJJJ-<A-F-FFJ
+
 ----------------
 
-## Process with Rscript
 
-There are several steps to complete this study. The reads are download from the NCBI. They are 50 nucleotides length. First we determine there quality to know the validity of the study performed. Then the qua
-
-# Download the data
-
-_Download.sh_
-Download the reads for the study. 
 
 # Determine the quality of the reads
 
