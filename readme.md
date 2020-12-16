@@ -74,6 +74,7 @@ quantify the expression of the transcripts. This script uses the reads and the
 
 _reference.sh_
 Download the genes of the reference species (stegastes partitus)
+
 ![legende](bicolor_damselfish2.jpg)
 
 _transcod.sh_
