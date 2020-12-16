@@ -1,6 +1,6 @@
 # TP NGS ClownFish
 
-![screenshot](TP_NGS_ClownFish_Paul/poisson_clown.jpg)
+![screenshot](poisson_clown.jpg)
 
 ## Titre
 ### Sous titre
