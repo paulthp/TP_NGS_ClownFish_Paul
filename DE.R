@@ -64,9 +64,11 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),y = log2Fold
 #volcanoplot  -> plus un gène est haut = plus il est signif = plus pval est basse
 ggplot(data = as.data.frame(resLFC),mapping = aes(x=resLFC$log2FoldChange, y=-log10(padj),color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#A413E8","#000FFF")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#000000","#000FFF")) + theme_bw() + theme(legend.position = 'none')
 
-#on peut utiliser resLFC_sort=resLFC[order(resLFC$baseMean),] pour trier tableau en fonction de baseMean et trouver les genes les plus et les moins exprimés
-
+#on peut utiliser ligne suivante pour trier tableau en fonction de baseMean et trouver les genes les plus et les moins exprimés
+resLFC_sort=resLFC[order(resLFC$baseMean),]
 #On supprime les NAs pour la commande suivante
 resLFC[is.na(resLFC$pvalue),"pvalue"] <- 1
 resLFC[is.na(resLFC$padj),"padj"] <- 1
 top_DE_genes <- resLFC[resLFC$padj<1e-2& abs(resLFC$log2FoldChange)>2,]
+top_DE_genes <- top_DE_genes[order(top_DE_genes$padj),]
+print(top_DE_genes[0:10,])

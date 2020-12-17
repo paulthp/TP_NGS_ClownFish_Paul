@@ -30,3 +30,4 @@ blastn -db $db -query $data_transdecoder/Trinity.fasta.transdecoder.rename.cds -
 
 #determiner nb de seq qui ont été alignées : cut -f1 blast_file |sort |uniq |wc -l (on compte le nombre de mots dans premiere colonne). On obitent 25000 gene, ca doit etre a peu pres nombre de genes codants dans la peau de poisson clown
 #launch script with      nohup ./blast.sh >& nohup.blast &
+
