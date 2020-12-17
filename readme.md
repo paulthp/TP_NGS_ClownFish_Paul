@@ -54,7 +54,7 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 
 ### Determine the quality of the reads
 
-**_FastQC.sh_**  
+* **_FastQC.sh_**  
 Create an HTML file for each file of reads with the quality of sequences
 
 Here is an exemple of a fastqc result obtained with our data. The quality was good enough, considering that a high duplication level is normal in RNAseq, and the Per "Base Sequence Content" is caused by a common problem of the primers synthesis.
@@ -62,14 +62,14 @@ Here is an exemple of a fastqc result obtained with our data. The quality was go
 ![legende](images/fastqc_exemple.jpg)
 
 
-**_MultiQC.sh_**  
+* **_MultiQC.sh_**  
 Create one HTML file with the summary of the quality of all the files. The same results than fastqc are obtained but with all the different files represented on the different graphs. It is usefull to detect an eventual issue when many files are used. 
 
 ### Quantify the expression of the transcripts 
 
-**_Trinity.sh_**  
 ![legende](images/trinity2.jpg)
 
+* **_Trinity.sh_**  
 Assemble the reads of sequencing
 
 ----------------
@@ -81,9 +81,9 @@ Exemple of a transcript obtained with Trinity
 
 ----------------
 
-**_Salmon.sh_**  
 ![legende](images/salmon2.jpg)
 
+* **_Salmon.sh_**  
 quantify the expression of the transcripts. This script takes the transcripts from Trinity and makes first an index. Then it uses this index to quantify for each transcript the number of associated reads. 
 One important parameter to choose in the "salmon index" is the k, to indicate the sensibility of alignement between the reads and the transcripts.
 
@@ -114,7 +114,7 @@ Exemple of results obtained with salmon. The first column indicates the name of 
 
 ----------------
 
-**_reference.sh_**  
+* **_reference.sh_**  
 Download the genes of the reference species (stegastes partitus)
 
 ![legende](images/reference_joke.jpg)
@@ -143,8 +143,10 @@ Same exemple of data renamed with with reference.sh
 ---------------
 
 
-**_transcod.sh_**  
+* **_transcod.sh_**  
 prepare the genes of the studied species to be able to annotate them with a reference species 
+
+gunzip fichier ??
 
 
 ## Commands
