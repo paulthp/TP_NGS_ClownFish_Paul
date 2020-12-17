@@ -20,7 +20,7 @@ We wonder then if the white bars are composed of iridophores, leucophores or bot
 
 ## Dataset, paper of interest
 
-The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. Reads are found in 6 files, from SRR7591064 to SRR7591069. 
+The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and BioProject PRJNA482578. Reads are found in 6 files, from SRR7591064 to SRR7591069.
 
 ## Workflow
 
@@ -117,7 +117,7 @@ Exemple of results obtained with salmon. The first column indicates the name of 
 **_reference.sh_**  
 Download the genes of the reference species (stegastes partitus)
 
-![legende](images/bicolor_damselfish2.jpg)
+![legende](images/reference_joke.jpg)
 
 ```wget -O data_reference/spartitus_coding.fa.gz http://ftp.ensembl.org/pub/release-102/fasta/stegastes_partitus/cds/Stegastes_partitus.Stegastes_partitus-1.0.2.cds.all.fa.gz```
 
