@@ -26,9 +26,9 @@ The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and Bi
 
 There are several steps to complete this study. The reads are download from the NCBI. They are 50 nucleotides length. First we determine there quality to know the validity of the study performed. Then the qua
 
-# Download the data
+### Download the data
 
-**_Download.sh_**  
+* **_Download.sh_**  
 Download the reads for the study. 
 
 For each file, a *fastq-dump* has been performed to download the data as fastq files
@@ -52,7 +52,7 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 
 
 
-# Determine the quality of the reads
+### Determine the quality of the reads
 
 **_FastQC.sh_**  
 Create an HTML file for each file of reads with the quality of sequences
@@ -65,7 +65,7 @@ Here is an exemple of a fastqc result obtained with our data. The quality was go
 **_MultiQC.sh_**  
 Create one HTML file with the summary of the quality of all the files. The same results than fastqc are obtained but with all the different files represented on the different graphs. It is usefull to detect an eventual issue when many files are used. 
 
-# Quantify the expression of the transcripts 
+### Quantify the expression of the transcripts 
 
 **_Trinity.sh_**  
 ![legende](images/trinity2.jpg)
@@ -147,7 +147,7 @@ Same exemple of data renamed with with reference.sh
 prepare the genes of the studied species to be able to annotate them with a reference species 
 
 
-### Commands
+## Commands
 
 _cd_ go in a specific folder
 _mkdir folder_ create a folder (mkdir -p folder to avoid to create again a folder which already exists) 
