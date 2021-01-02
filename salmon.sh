@@ -13,9 +13,8 @@ mkdir -p data_salmon
 salmon index -k 25 -t $data/sra_data_Trinity/Trinity.fasta -i $data/sra_data_Trinity/trinity_index
 
 # Quantification
-# Dans Name on met le nom des variables sans .fastq pour pouvoir créer un dossier à chaque boucle du nom du fichier sans fastq (pas beau)
-# Pour éviter que a chaque boucle on remplace les données d'avant
-#-p numbre of threads = nombre de coeurs (pour l'ordinateur)
+# In name we create a folder to avoid replacing the data in the file every loop. 
+#-p numbre of threads = hearth number of the computer
 
 fastq=$(ls $data/sra_data/*.fastq)
 

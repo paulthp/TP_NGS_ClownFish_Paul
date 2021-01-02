@@ -87,7 +87,8 @@ Exemple of a transcript obtained with Trinity
 quantify the expression of the transcripts. This script takes the transcripts from Trinity and makes first an index. Then it uses this index to quantify for each transcript the number of associated reads. 
 One important parameter to choose in the "salmon index" is the k, to indicate the sensibility of alignement between the reads and the transcripts.
 
-Mapping percentage ?
+
+we use *grep "Mapping rate" nohup.salmon* to find the % of mapping in the nohup. We obtained 95.3385%
 
 
 ```
@@ -144,7 +145,47 @@ Same exemple of data renamed with with reference.sh
 
 
 * **_transcod.sh_**  
-prepare the genes of the studied species to be able to annotate them with a reference species 
+prepare the genes of the studied species to be able to annotate them with a reference species. 2 steps minimal are needed.
+
+The first step allows to find coding sequences (cds) by finding start and stop codons. 
+
+```
+TransDecoder.LongOrfs -t $data/sra_data_Trinity/Trinity.fasta --gene_trans_map $data/sra_data_Trinity/Trinity.fasta.gene_trans_map -m 100 -S -O data_transdecoder_files
+```
+The second step sorts the cds to know which one will be used or not. A step can add before this one to annotate the cds with a database. In our case, we kept the longer cds which is the most likely to be the good one.
+
+```
+TransDecoder.Predict -t $data/sra_data_Trinity/Trinity.fasta --single_best_only --cpu 14 -O data_transdecoder_files
+```
+
+
+* **_blast.sh_**  
+identify with the reference species the genes corresponding to the transcripts obtained.
+Before doing this, the trinity file was renamed with *awk '{print $1}' Trinity.fasta.transdecoder.cds > Trinity.fasta.transdecoder.rename.cds*
+
+makeblastdb build a reference database to allows the blast to be performed on our data. Then, blastn do a blast from the data obtained with transDecoder on the reference species choosed. 
+
+```
+makeblastdb -dbtype nucl -in $data_reference/spartitus_coding_format.fa -out $db
+blastn -db $db -query $data_transdecoder/Trinity.fasta.transdecoder.rename.cds -evalue 1e-20 -outfmt 6 -out $out_blast/blast_file
+```
+*evalue*: determine the threshold for the hits. The higher is the threshold, the more hits there are but with a higher probability to have false positives. For a species homology we usually use "1e-10"
+*outfmt*: choose the outfile format we want (the 6 is the best one for Corentin !)
+
+
+----------------
+This in an exemple of data obtained with the blast. We have the transcrit identifier and the corresponding gene.
+
+    TRINITY_DN0_c0_g1_i1.p1 ENSSPAG00000000515.1|hmcn1      88.341  892     100     4       68      957     56      945     0.0     1068
+    TRINITY_DN10000_c0_g1_i1.p1     ENSSPAG00000017035.1|oprd1b     86.264  961     123     7       70      1024    106     1063    0.0     1035
+    TRINITY_DN10000_c0_g1_i1.p1     ENSSPAG00000017041.1|cyfip1     86.553  818     101     8       287     1101    332     1143    0.0     893
+    TRINITY_DN10000_c0_g1_i2.p1     ENSSPAG00000017035.1|oprd1b     83.368  962     140     16      70      1015    106     1063    0.0     872
+    TRINITY_DN10000_c0_g1_i2.p1     ENSSPAG00000017041.1|cyfip1     86.169  817     97      9       287     1092    332     1143    0.0     869
+
+We use *cut -f1 blast_file |sort |uniq |wc -l* to determine the number of sequences that have been aligned
+We found 25.000 which must correpond to the number of genes in the fish skin.
+
+----------------
 
 gunzip fichier ??
 
