@@ -242,11 +242,11 @@ dir <- "/home/rstudio/data/mydatalocal/data"
 
 results with different plots
 
-![legende](MA_plot_vinciane.jpg)
+![legende](images/MA_plot_vinciane.jpg)
 
-![legende](PCA_vinciane.jpg)
+![legende](images/PCA_vinciane.jpg)
 
-![legende](volcano_plot_vinciane.jpg)
+![legende](images/volcano_plot_vinciane.jpg)
 
 ----------------
 
