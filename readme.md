@@ -14,7 +14,7 @@ _Italic_
 
 ## Objective
 
-Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diveristy, the clownfish, whci harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation.  
+Actinopterygien fishes present a high diversity of pigmentation with more than 8 various cells from the scales. To undesrtand the causes of this diversity, the clownfish, which harbor white bars over a darker orange body is an interesting model. By electron microscopy, cells from these white bars appeared to be similar to iridophores which make a reflective scales as it can be found in Zebrafishes. Other cells called leucophores could be responsible of the white pigmentation.  
 We wonder then if the white bars are composed of iridophores, leucophores or both. To this purpose, transcriptomic analyses of white and orange scales where performed on 3 organisms and data were collected to compare transcriptomes. 
 
 
@@ -223,9 +223,9 @@ dir <- "/home/rstudio/data/mydatalocal/data"
     dds <- DESeq(dds)
     resultsNames(dds)
     
-*table of results: we use just one of the following sentences.*
-*BaseMean: gene expression level. A high BaseMean correspond to a high expressed gene.*
-*log2FoldChange: compare the treatment (white) to the control. (FC=1: same expression / FC=2: 2x more in the treatment / FC=0.5: 2x more in the control). We take a log2 to have a symetrical parameter (log2FC>0: overexpression with the treatment)*
+*table of results: we use just one of the following sentences.*  
+*BaseMean: gene expression level. A high BaseMean correspond to a high expressed gene.*  
+*log2FoldChange: compare the treatment (white) to the control. (FC=1: same expression / FC=2: 2x more in the treatment / FC=0.5: 2x more in the control). We take a log2 to have a symetrical parameter (log2FC>0: overexpression with the treatment)*  
 *stat: test statistic. padj = pvalue adjusted with FDR.*
 
     resLFC <- results(dds)
@@ -244,10 +244,9 @@ results with different plots
 
 ![legende](images/MA_plot_vinciane.jpg)
 
-![legende](images/PCA_vinciane.jpg)
-
 ![legende](images/volcano_plot_vinciane.jpg)
 
+![legende](images/PCA_vinciane.jpg)
 ----------------
 
 
