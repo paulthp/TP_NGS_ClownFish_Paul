@@ -1,7 +1,7 @@
 #DE analysis
 
-#executer une ligne dans R : ctrl + entrer
-#en cas de probleme : aller dans environnement (pas loin onglet Git) et faire la brosse pour nettoyer.
+#execute a line: CTRL + enter 
+#en cas de probleme : aller dans environnement (à côté onglet Git) et faire la brosse pour nettoyer.
 
 #Libraries
 library("tximport")
@@ -11,50 +11,44 @@ library("DESeq2",quietly = T)
 
 dir <- "/home/rstudio/data/mydatalocal/data"
 
-#On construit un tableau sample avec le nom de chaque échantillon et leur condition
-
+#We build a sample table with the name and the condition of each sample (color of the skin).
 samp.name <- c("SRR7591064","SRR7591065","SRR7591066","SRR7591067","SRR7591068","SRR7591069")
 samp.type <- c ("orange","white","orange","white","orange","white")
-#verifier que ca correspond pour les couleurs
 samples_table <- data.frame(run=samp.name,condition=samp.type)
 
-#on recupere fichiers dans salmon. On cree une variable ou on met la localisation de chaque sortie de salmon
-#on aurait pu ecrire a la main commme dans samp.name
-#samples_table$run : donne colonne run dans le tableau samples_table
+#We take the data from salmon.
+#We put in a variable the localisation of each salmon output.
 path_files <- file.path(dir,"data_salmon", samples_table$run, "quant.sf")
-#on nomme chaque fichier stocké dans files
+#We rename the files obtained
 names(path_files) <- samples_table$run
 
+#we import the transcripts identities from the Trinity trans_map
 tx2gene <- read.table(file = paste(dir,"/sra_data_Trinity/Trinity.fasta.gene_trans_map",sep=""),header = FALSE,sep = "\t",col.names = c("geneid","txname"))[,c(2,1)]
-#on regarde début du tableau en faisant head(tx2gene)
-
+#We import salmon data of quantification with the identity of the transcripts
 txi <- tximport(path_files,type="salmon",tx2gene=tx2gene)
-#head(txi$count) interessant a regarder
 
-#Utilisation de DESeq
+
+#DESeq
 ddsTxi <- DESeqDataSetFromTximport(txi,colData = samples_table,design = ~ condition)
 
-#on fait la somme des valeurs de chaque ligne de table de comptes et on ne garde que celles >= à 10. On enlève gènes qui ont moins de 10 reads. 
-#Ce sont des gènes très faiblement exprimés. Cela permet de faire moins de test et donc moins de corrections de tests multiples.
+#We do the sum of each lines and we keep only when the genes with more that 10 reads (to do much less tests of correlations)
 keep <- rowSums(counts(ddsTxi)) >=10
 dds <- ddsTxi[keep,]
-#on indique le blanc comme ref (pareil), mais important a savoir pour interpreter resultats
+#We put the white as reference (doesn't matter)
 dds$condition <- relevel(dds$condition, ref = "white")
-#on fait tourner DESeq du tableau
 dds <- DESeq(dds)
 resultsNames(dds)
-#on genere le tableau de resultat. 
-#BaseMean : moyenne des comptes normalisés du gène sur l'échantillon. Cela représente le niveau d'expression gu gène. Un basemean élévé = un gène fortement exprimé donc bcp de signal
-#log2FoldChange : condition traitement (peau orange)/condition controle (blanc). Foldchange de 2 : expression 2x plus grande dans orange, et de 0.5 si 2x plus grande dans blanc. S'il vaut 1, l'expression est la meme. On passe cette valeur en log2 pour avoir quelque chose de symetrique. Si FC est de 1, log2FC est 0. Gene surexprimes >0, sous exprime <0, et la c'est symetrique ! FC augmente 1, log2Fc multiplie par 2
-#stat : statistique du test. pvalue=pvalue du test. padj = pvalue corrigée avec FDR.
-#pvalue : H0 (hyp absence effet cad gene pas differentielmt exprimé dans 2 conditions), alpha = seuil pour rejetter H0 (en general 5%). pvalue = proba de rejetter hyp nulle alors qu'elle est vraie. Plus pvalue est faible et plus on est confiant. On voit que gene avec pvalue faible on un log2FC different de 0
 
-#on choisit une de ces 2 sentences selon ce qui est indiqué dans les commentaires en dessous
+#We obtain the table of results by using one of the next two sentences
 resLFC <- results(dds)
 resLFC <- lfcShrink(dds, coef="condition_orange_vs_white", type = "apeglm")
+#BaseMean: gene expression level. A high BaseMean correspond to a high expressed gene.
+#log2FoldChange: compare the treatment (white) to the control. (FC=1: same expression / FC=2: 2x more in the treatment / FC=0.5: 2x more in the control). We take a log2 to have a symetrical parameter (log2FC>0: overexpression with the treatment)
+#stat: test statistic. padj = pvalue adjusted with FDR.
+
 
 library(ggplot2)
-#on fait un plot de resFLC (qu'on convetit en data.frame), mapping donne ce qu'on veut sur quel axe, geom donne ce qu'on veut comme format de resultats (histogrammes, point,...)
+#we do a plot of resFLC (by converting in data.frame). (mapping def the axes, and geom the type of plot). We put another color when pvalue<0.05.
 ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),y = log2FoldChange,color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#FF1EBB","#F3FE08")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#35EF45","#4D4FE7")) + theme_bw() + theme(legend.position = 'none')
 #pb : on a une relation entre baseMean et log2FC. Les genes avec une faible expression ont un Log2FC eleve. On utilise donc lfcshrink
 #on change couleur pour bien distinguer quand pvalue<0.05 (site pour code : colourco.de)
@@ -64,9 +58,9 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),y = log2Fold
 #volcanoplot  -> plus un gène est haut = plus il est signif = plus pval est basse
 ggplot(data = as.data.frame(resLFC),mapping = aes(x=resLFC$log2FoldChange, y=-log10(padj),color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#A413E8","#000FFF")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#000000","#000FFF")) + theme_bw() + theme(legend.position = 'none')
 
-#on peut utiliser ligne suivante pour trier tableau en fonction de baseMean et trouver les genes les plus et les moins exprimés
+#Sort the table with BaseMEan to find the most and less expressed genes 
 resLFC_sort=resLFC[order(resLFC$baseMean),]
-#On supprime les NAs pour la commande suivante
+#We delete the NA to execute the following command
 resLFC[is.na(resLFC$pvalue),"pvalue"] <- 1
 resLFC[is.na(resLFC$padj),"padj"] <- 1
 top_DE_genes <- resLFC[resLFC$padj<1e-2& abs(resLFC$log2FoldChange)>2,]
