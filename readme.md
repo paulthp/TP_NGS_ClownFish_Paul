@@ -26,7 +26,7 @@ The reads are available on NCBI SRA dataset, under BioProject PRJNA482393 and Bi
 
 There are several steps to complete this study. The reads are download from the NCBI. They are 50 nucleotides length. First we determine there quality to know the validity of the study performed. Then the qua
 
-### Download the data
+### 1) Download the data
 
 * **_Download.sh_**  
 Download the reads for the study. 
@@ -52,7 +52,7 @@ Exemple of fastq file: (line 4 corresponds to the quality sequence)
 
 
 
-### Determine the quality of the reads
+### 2) Determine the quality of the reads
 
 * **_FastQC.sh_**  
 Create an HTML file for each file of reads with the quality of sequences
@@ -65,7 +65,7 @@ Here is an exemple of a fastqc result obtained with our data. The quality was go
 * **_MultiQC.sh_**  
 Create one HTML file with the summary of the quality of all the files. The same results than fastqc are obtained but with all the different files represented on the different graphs. It is usefull to detect an eventual issue when many files are used. 
 
-### Quantify the expression of the transcripts 
+### 3) Quantify the expression of the transcripts 
 
 ![legende](images/trinity2.jpg)
 
@@ -114,6 +114,8 @@ Exemple of results obtained with salmon. The first column indicates the name of 
     TRINITY_DN32_c0_g1_i3   1802      1682.080        3.596785        848.432
 
 ----------------
+
+### 3) Annotation of the transcripts with a reference species
 
 * **_reference.sh_**  
 Download the genes of the reference species (stegastes partitus)
@@ -187,6 +189,7 @@ We found 25.000 which must correpond to the number of genes in the fish skin.
 
 ----------------
 
+### 4) Statistical analysis
 
 * **_DE.R_**  
 
@@ -195,14 +198,7 @@ This script uses the data from salmon and makes stastics and plots to anlyze the
 dir <- "/home/rstudio/data/mydatalocal/data"
 
 *We build a sample table with the name and the condition of each sample (color of the skin).*
-
-    library("tximport")
-    library("readr")
-    library(apeglm)
-    library("DESeq2",quietly = T)
     
-    dir <- "/home/rstudio/data/mydatalocal/data"
-
     samp.name <- c("SRR7591064","SRR7591065","SRR7591066","SRR7591067","SRR7591068","SRR7591069")
     samp.type <- c ("orange","white","orange","white","orange","white")
     samples_table <- data.frame(run=samp.name,condition=samp.type)
@@ -238,15 +234,32 @@ dir <- "/home/rstudio/data/mydatalocal/data"
     ggplot(data = as.data.frame(resLFC),mapping = aes(x=resLFC$log2FoldChange, y=-log10(padj),color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#A413E8","#000FFF")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#000000","#000FFF")) + theme_bw() + theme(legend.position = 'none')
     
 
+
+* **DE2.R**
+
+Because the first script didn't work, one from another personn of the group was used (Vinciane)
+
 ----------------
 
 results with different plots
 
-![legende](images/MA_plot_vinciane.jpg)
+* The MAplot shows the log2FoldChange and the BaseMean which respectively correspond to the difference of expression between the sample and the control, and the expression level. The genes with a positive log2FC are overexpressed in the orange skin, and the genes with a negatie log2FC are overexpressed in the white skin.  
+A relationship between the the log2FC and the baseMean was observed and corrected with ```lfcShrink```
 
-![legende](images/volcano_plot_vinciane.jpg)
+![legende](images/MAplot.jpg)
 
-![legende](images/PCA_vinciane.jpg)
+* The volcano plot is another representation of the results with the adjusted p-value (by DESeq tool) and the log2FC. The genes with a low padj are the one with a high difference of expression between the white and orange skin.
+
+![legende](images/volcano_plot.jpg)
+
+*A principal component analysis was also performed
+
+![legende](images/plotPCA.jpg)
+
+*Manual annotation of top differentially expressed genes (by Vinciane)
+
+![legende](images/volcano_genes.jpg)
+
 ----------------
 
 

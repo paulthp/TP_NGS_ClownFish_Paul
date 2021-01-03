@@ -1,5 +1,8 @@
 #DE analysis
 
+#THIS SCRIPT IS NOT WORKING -----> SEE DE2.R !
+
+
 #execute a line: CTRL + enter 
 #en cas de probleme : aller dans environnement (à côté onglet Git) et faire la brosse pour nettoyer.
 
