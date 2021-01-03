@@ -193,46 +193,21 @@ We found 25.000 which must correpond to the number of genes in the fish skin.
 
 * **_DE.R_**  
 
-This script uses the data from salmon and makes stastics and plots to anlyze them. The expressions level are compared between the conditions for each transcript to answer the biological question.
+This script uses the data from salmon and makes stastics and plots to anlyze them. The expressions level are compared between the conditions for each transcript to answer the biological question, but the low number of replicates did not allow us to use classical statistical approaches. We 
 
-dir <- "/home/rstudio/data/mydatalocal/data"
+In this analysis we only keep the genes with more than 10 reads (it decreases drastically the number of tests of correlation).
 
-*We build a sample table with the name and the condition of each sample (color of the skin).*
+We obtained a table of results with several columns:  
+
+![legende](images/head_resLFC_sort.jpg)
+
+*BaseMean*: gene expression level. A high BaseMean correspond to a high expressed gene.  
+*log2FoldChange*: compare the treatment (white) to the control. (FC=1: same expression / FC=2: 2x more in the treatment / FC=0.5: 2x more in the control). We take a log2 to have a symetrical parameter (log2FC>0: overexpression with the treatment) 
+*stat*: test statistic. padj = pvalue adjusted with FDR.  
+
+Then several plots were made. Unfortunately, something went wrong in this script and the script obtained appeared to be wrong.
     
-    samp.name <- c("SRR7591064","SRR7591065","SRR7591066","SRR7591067","SRR7591068","SRR7591069")
-    samp.type <- c ("orange","white","orange","white","orange","white")
-    samples_table <- data.frame(run=samp.name,condition=samp.type)
-    
-*we import the files from salmon and the transcripts identities from Trinity data*  
-
-    path_files <- file.path(dir,"data_salmon", samples_table$run, "quant.sf")
-    names(path_files) <- samples_table$run
-    tx2gene <- read.table(file = paste(dir,"/sra_data_Trinity/Trinity.fasta.gene_trans_map",sep=""),header = FALSE,sep = "\t",col.names = c("geneid","txname"))[,c(2,1)]
-    txi <- tximport(path_files,type="salmon",tx2gene=tx2gene)
-
-*DESeq analysis. We put the white as reference but both can work (it is just important to consider it for the results analysis. We keep only the genes with more that 10 reads (it decreases drastically the number of tests of correlation).*
-
-    ddsTxi <- DESeqDataSetFromTximport(txi,colData = samples_table,design = ~ condition)
-    keep <- rowSums(counts(ddsTxi)) >=10
-    dds <- ddsTxi[keep,]
-    dds$condition <- relevel(dds$condition, ref = "white")
-    dds <- DESeq(dds)
-    resultsNames(dds)
-    
-*table of results: we use just one of the following sentences.*  
-*BaseMean: gene expression level. A high BaseMean correspond to a high expressed gene.*  
-*log2FoldChange: compare the treatment (white) to the control. (FC=1: same expression / FC=2: 2x more in the treatment / FC=0.5: 2x more in the control). We take a log2 to have a symetrical parameter (log2FC>0: overexpression with the treatment)*  
-*stat: test statistic. padj = pvalue adjusted with FDR.*
-
-    resLFC <- results(dds)
-    resLFC <- lfcShrink(dds, coef="condition_orange_vs_white", type = "apeglm")
-    
-*make a plot*
-
-    library(ggplot2)
-    ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),y = log2FoldChange,color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#FF1EBB","#F3FE08")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#35EF45","#4D4FE7")) + theme_bw() + theme(legend.position = 'none')
-    ggplot(data = as.data.frame(resLFC),mapping = aes(x=resLFC$log2FoldChange, y=-log10(padj),color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#A413E8","#000FFF")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#000000","#000FFF")) + theme_bw() + theme(legend.position = 'none')
-    
+![legende](images/volcano_plot_wrong.png)
 
 
 * **DE2.R**
@@ -244,7 +219,8 @@ Because the first script didn't work, one from another personn of the group was 
 results with different plots
 
 * The MAplot shows the log2FoldChange and the BaseMean which respectively correspond to the difference of expression between the sample and the control, and the expression level. The genes with a positive log2FC are overexpressed in the orange skin, and the genes with a negatie log2FC are overexpressed in the white skin.  
-A relationship between the the log2FC and the baseMean was observed and corrected with ```lfcShrink```
+A relationship between the the log2FC and the baseMean was observed and corrected with ```lfcShrink```  
+The genes corresponding to the bigger plots are the genes with padj<1e-20. They belong to 2 groups: down-regulated genes (log2FC<0) and up-regulated genes (log2FC>0)  
 
 ![legende](images/MA_plot.jpg)
 
