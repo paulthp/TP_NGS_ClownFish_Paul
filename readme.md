@@ -246,7 +246,7 @@ results with different plots
 * The MAplot shows the log2FoldChange and the BaseMean which respectively correspond to the difference of expression between the sample and the control, and the expression level. The genes with a positive log2FC are overexpressed in the orange skin, and the genes with a negatie log2FC are overexpressed in the white skin.  
 A relationship between the the log2FC and the baseMean was observed and corrected with ```lfcShrink```
 
-![legende](images/MAplot.jpg)
+![legende](images/MA_plot.jpg)
 
 * The volcano plot is another representation of the results with the adjusted p-value (by DESeq tool) and the log2FC. The genes with a low padj are the one with a high difference of expression between the white and orange skin.
 

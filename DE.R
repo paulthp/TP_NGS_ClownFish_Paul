@@ -1,6 +1,6 @@
 #DE analysis
 
-#THIS SCRIPT IS NOT WORKING -----> SEE DE2.R !
+#THIS SCRIPT IS NOT WORKING -----> SEE DE2.R (from Vinciane) 
 
 
 #execute a line: CTRL + enter 
@@ -58,7 +58,7 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),y = log2Fold
 #Resultat bizarre : possibilité est que k est plus bas donc il y'a plus de faux positifs. 
 #avec dim(resLFC[is.na(resLFC$padj),]), on voit que ce sont probablement des genes avec padj = NA
 
-#volcanoplot  -> plus un gène est haut = plus il est signif = plus pval est basse
+#volcanoplot: the higher the dot is, the lower the pval is 
 ggplot(data = as.data.frame(resLFC),mapping = aes(x=resLFC$log2FoldChange, y=-log10(padj),color=padj<0.05,size=padj<0.05,shape=padj<0.05,alpha=padj<0.05,fill=padj<0.05)) + geom_point() +  scale_color_manual(values=c("#A413E8","#000FFF")) + scale_size_manual(values = c(0.1,1)) + scale_alpha_manual(values = c(0.5,1)) + scale_shape_manual(values = c(21,21)) + scale_fill_manual(values=c("#000000","#000FFF")) + theme_bw() + theme(legend.position = 'none')
 
 #Sort the table with BaseMEan to find the most and less expressed genes 
