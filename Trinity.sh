@@ -9,8 +9,7 @@ cd $data
 
 
 #Launch the Trinity process. 
-#| = on prend le resultat et on l'envoie dans la suite
-#avec paste on colle les noms en les séparant avec une virgule (besoin pour trinity)
+#| = take the result and put it in the next of the sentence  / Paste : we separate the name just with a "," (needed for Trinity)
 
 mkdir -p sra_data_Trinity
 

@@ -25,6 +25,6 @@ fastqc -o sra_data_quality -t 16 $A
 
 done
 
-#lancer script avec      nohup ./FastQC.sh >& nohup.fastqc &
+#launch script with      nohup ./FastQC.sh >& nohup.fastqc &
 # suivre progression        tail -f nohup.fastqc
 #Then open the .zip files in sra_data_quality and look at the downoloaded files

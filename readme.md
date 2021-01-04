@@ -235,11 +235,11 @@ The genes corresponding to the bigger plots are the genes with padj<1e-20. They 
 
 ![legende](images/volcano_plot.jpg)
 
-*A principal component analysis was also performed
+* A principal component analysis was also performed
 
 ![legende](images/plotPCA.jpg)
 
-*Manual annotation of top differentially expressed genes (figure by Vinciane)  
+* Manual annotation of top differentially expressed genes (figure by Vinciane)  
 By comparing with white skin, in orange skin 16 up-regulated genes (log2FC>0) and 14 down-regulated genes (log2FC<0) were found with padj<1e-20. With the correspondence between Trinity identifiers and genes names, the name of the corresponding genes can be found. However, due to an unfortunate mistake in ```parse.awk``` script (to rename the reference species genes), a mismatch was introduced between the Trinity ID and the genes names. Then, the Ensembl ID was used in the Ensembl database to find the corresponding genes. 
 
 ![legende](images/volcano_genes.jpg)
