@@ -239,7 +239,7 @@ By comparing with white skin, in the orange skin 16 up-regulated genes (log2FC>0
 ![legende](images/volcano_genes.jpg)
 
 
-##Conclusion
+## Conclusion
 
 Some genes were then found to be deferentially expressed in white and orange skin of the clownfish. These genes could be involved in the pigmentation of the skin. 
 
