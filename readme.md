@@ -58,7 +58,7 @@ Here is an exemple of a fastqc result obtained with our data. The quality was go
 
 
 * **_MultiQC.sh_**  
-Create one HTML file with the summary of the quality of all the files. The same results than fastqc are obtained but with all the different files represented on the common graphs. It is usefull to detect problems of sequencing when many files are used. 
+Create one HTML file with the summary of the quality of all the files. The same results than fastqc were obtained but with all the different files represented on the same graphs. It is usefull to detect problems of sequencing when many files are used. 
 
 ### 3) Quantify the expression of the transcripts 
 
