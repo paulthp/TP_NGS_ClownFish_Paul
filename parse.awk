@@ -1,3 +1,5 @@
+#Warning : there is a problem in this script. It interchanges the common names and the ensembl ID of the genes.  
+
 BEGIN {
     FS=OFS="\t"
     gene = "gene"
